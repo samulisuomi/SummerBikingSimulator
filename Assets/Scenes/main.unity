@@ -185,6 +185,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bikeInstance: {fileID: 579267031}
+  backgroundInstance: {fileID: 782578471}
+  startSpeed: 1.5
+  maxSpeed: 15.5
+  speedIncrease: .100000001
+  speedIncreaseIntervalInSeconds: 3
   invincibility: 0
 --- !u!4 &618945514
 Transform:
@@ -228,6 +233,7 @@ MonoBehaviour:
   scrollSpeed: 1
   interval: 4.5
   limit: -10
+  totalDistance: 0
   backgroundSprites:
   - {fileID: 1002197937}
   - {fileID: 1123288183}
