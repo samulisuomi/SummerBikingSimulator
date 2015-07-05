@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   xLimit: 1.85000002
+  startPositionX: 0
 --- !u!1 &618945512
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,6 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5293c3edfe538845a960b2a4168180e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bikeInstance: {fileID: 579267031}
+  invincibility: 0
 --- !u!4 &618945514
 Transform:
   m_ObjectHideFlags: 0

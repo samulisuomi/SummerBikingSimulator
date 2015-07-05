@@ -6,6 +6,8 @@ public class Bike : MonoBehaviour {
 	public float speed;
 	public float xLimit;
 
+	public float startPositionX = 0.0f;
+
 	private float distance;
 
 	// Update is called once per frame
@@ -44,5 +46,9 @@ public class Bike : MonoBehaviour {
 
 	void MoveRight(float distance) {
 		transform.Translate(Vector3.right * distance, Space.World);
+	}
+
+	public void ResetBike() {
+		transform.position = new Vector3(startPositionX, transform.position.y, transform.position.z);
 	}
 }
