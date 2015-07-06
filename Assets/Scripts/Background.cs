@@ -29,7 +29,8 @@ public class Background : MonoBehaviour {
 		{
 			bg.transform.Translate(Vector3.down * distance, Space.World);
 			if (bg.transform.position.y < limit) {
-				bg.transform.position = new Vector3(bg.transform.position.x, spawn, bg.transform.position.z);
+				float newY = bg.transform.position.y + 4 * interval;
+				bg.transform.position = new Vector3(bg.transform.position.x, newY, bg.transform.position.z);
 			}
 		}
 
