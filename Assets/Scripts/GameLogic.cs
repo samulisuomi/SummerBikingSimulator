@@ -48,7 +48,7 @@ public class GameLogic : MonoBehaviour {
 		if (gameState == GameState.Game) {
 			// Interval counting:
 			intervalCounter = Time.time - intervalStartTime;
-			if (intervalCounter > speedIncreaseIntervalInSeconds) {
+			if ((intervalCounter > speedIncreaseIntervalInSeconds) && (backgroundInstance.scrollSpeed < maxSpeed)) {
 				backgroundInstance.scrollSpeed += speedIncrease;
 				intervalStartTime = Time.time;
 				Debug.Log("New background scroll speed: " + backgroundInstance.scrollSpeed);
