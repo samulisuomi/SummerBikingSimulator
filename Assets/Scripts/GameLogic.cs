@@ -5,21 +5,24 @@ public class GameLogic : MonoBehaviour {
 
 	// Setup:
 	public Bike bikeInstance;
+	public Helmet helmetInstance;
 	public Background backgroundInstance;
 
 	public float startSpeed;
 	public float maxSpeed;
 	public float speedIncrease;
 	public float speedIncreaseIntervalInSeconds;
+	public int startHealth;
+	public float invincibilityLength;
 
 	// Flags:
-	public bool invincibility;
 
 	// Private variables:
 	private float startTime;
 	private float intervalStartTime;
 	private float intervalCounter;
 
+	private int distanceScale = 2;
 
 	// States of the game:
 	private enum GameState {
@@ -31,6 +34,7 @@ public class GameLogic : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		helmetInstance.maxHealth = startHealth;
 		BeginGame();
 	}
 	
@@ -42,6 +46,8 @@ public class GameLogic : MonoBehaviour {
 
 		// Other updates:
 		if (gameState == GameState.Title) {
+			bikeInstance.ResetBike();
+
 			// Wait for tap.
 		}
 
@@ -52,6 +58,15 @@ public class GameLogic : MonoBehaviour {
 				backgroundInstance.scrollSpeed += speedIncrease;
 				intervalStartTime = Time.time;
 				Debug.Log("New background scroll speed: " + backgroundInstance.scrollSpeed);
+			}
+
+			// Update UI:
+			// hudsomething.distance = (backgroundInstance.totalDistance * distanceScale).ToString("0.00"); 
+			// hudsomething.health = helmetInstance.health;
+
+			// Detect lives:
+			if (helmetInstance.health <= 0) {
+				BeginGameOver();
 			}
 
 		}
@@ -70,8 +85,14 @@ public class GameLogic : MonoBehaviour {
 		startTime = Time.time;
 		intervalStartTime = startTime;
 		bikeInstance.ResetBike();
+		helmetInstance.health = startHealth;
 		backgroundInstance.scrollSpeed = startSpeed;
 		this.gameState = GameState.Game;
+	}
+
+	void BeginGameOver() {
+		backgroundInstance.scrollSpeed = 0.0f;
+		this.gameState = GameState.GameOver;
 	}
 
 }
