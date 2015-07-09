@@ -14,6 +14,7 @@ public class GameLogic : MonoBehaviour {
 	public float speedIncreaseIntervalInSeconds;
 	public int startHealth;
 	public float invincibilityLength;
+	public float enemyStartSpeed;
 
 	// Flags:
 
@@ -58,6 +59,7 @@ public class GameLogic : MonoBehaviour {
 				backgroundInstance.scrollSpeed += speedIncrease;
 				intervalStartTime = Time.time;
 				Debug.Log("New background scroll speed: " + backgroundInstance.scrollSpeed);
+				Enemy.speed += speedIncrease;
 			}
 
 			// Update UI:
@@ -87,6 +89,7 @@ public class GameLogic : MonoBehaviour {
 		bikeInstance.ResetBike();
 		helmetInstance.health = startHealth;
 		backgroundInstance.scrollSpeed = startSpeed;
+		Enemy.speed = enemyStartSpeed;
 		this.gameState = GameState.Game;
 	}
 

@@ -3,13 +3,13 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
+	public static float speed;
+
+	private float distance;
+
 	// Update is called once per frame
 	void Update () {
-	
+		distance = speed * Time.deltaTime;
+		transform.Translate(Vector3.down * distance, Space.World);
 	}
 }
