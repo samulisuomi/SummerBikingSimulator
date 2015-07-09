@@ -24,5 +24,11 @@ public class Helmet : MonoBehaviour {
 		if (false) {
 			invincibility = true;
 		}
+		// TODO: Collision with bottle:
+		if (false) {
+			if (health < maxHealth) {
+				health++;
+			}
+		}
 	}
 }
