@@ -11,5 +11,8 @@ public class Enemy : MonoBehaviour {
 	void Update () {
 		distance = speed * Time.deltaTime;
 		transform.Translate(Vector3.down * distance, Space.World);
+		if (this.transform.position.y < -7.0f) {
+			Destroy(gameObject);
+		}
 	}
 }
