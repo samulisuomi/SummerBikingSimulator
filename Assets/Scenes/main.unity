@@ -216,13 +216,13 @@ MonoBehaviour:
   backgroundInstance: {fileID: 782578471}
   enemyPrefab: {fileID: 11451038, guid: 31cfbb93b7b78964fb159ac677225ca6, type: 2}
   bottlePrefab: {fileID: 11455350, guid: d6bb4401102b37b41976bcdfdf2aa48a, type: 2}
-  backgroundStartSpeed: 1.25
+  backgroundStartSpeed: 1.29999995
   backgroundMaxSpeed: 20
   speedIncrease: .0500000007
   speedIncreaseIntervalInSeconds: 5
   startHealth: 3
   invincibilityLength: 0
-  objectStartSpeed: 1.75
+  objectStartSpeed: 1.60000002
   objectIntervalDistance: 3
   spawns:
   - {fileID: 605384154}

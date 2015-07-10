@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class GameLogic : MonoBehaviour {
 
@@ -35,7 +37,22 @@ public class GameLogic : MonoBehaviour {
 	private float objectIntervalStartDistance;
 	private float objectIntervalDistanceCounter;
 
-	private float distanceScale = 1.81818181f;
+	private static float DISTANCE_SCALE = 1.81818181f;
+	private static int TOTAL_SPAWNS = 3;
+
+	private int nextSpawnIndex;
+	private int previousSpawnIndex;
+
+	private static string[] spawnOptions = {"000", "001", "010", "011", "100", "101", "110"};
+	private static int[][] nextSpawnOptions = new int[][] {
+		new int[] {0, 1, 2, 3, 4, 5, 6},
+		new int[] {0, 1, 2, 3, 4, 5},
+		new int[] {0, 1, 2, 3, 4, 6},
+		new int[] {0, 1, 2, 3},
+		new int[] {0, 1, 2, 4, 5, 6},
+		new int[] {0, 1, 4, 5},
+		new int[] {0, 2, 4, 6}
+	};
 
 	// States of the game:
 	private enum GameState {
@@ -45,8 +62,22 @@ public class GameLogic : MonoBehaviour {
 	}
 	private GameState gameState;
 
+	// States of the game:
+	private enum SpawnObject {
+		Enemy,
+		Bottle,
+		Sunglasses
+	}
+	
 	// Use this for initialization
 	void Start () {
+		foreach (var item in nextSpawnOptions) {
+			string s = "";
+			foreach (int i in item) {
+				s = s + i;
+			}
+			Debug.Log (s);
+		}
 		helmetInstance.maxHealth = startHealth;
 		BeginGame();
 	}
@@ -129,20 +160,31 @@ public class GameLogic : MonoBehaviour {
 
 	// TODO: spawn management and actual spawning should be in different methods
 	void SpawnEnemy(int i) {
-		if (spawns.Length == 3) {
+		if (spawns.Length == TOTAL_SPAWNS) {
 			Instantiate(enemyPrefab, spawns[i].transform.position, Quaternion.identity);
 		}
 		else {
-			Debug.Log("Warning: 3 spawns not set up");
+			Debug.Log("Warning: Number of spawn does not equal " + TOTAL_SPAWNS);
 		}
 	}
 	void SpawnBottle(int i) {
-		if (spawns.Length == 3) {
+		if (spawns.Length == TOTAL_SPAWNS) {
 			Instantiate(bottlePrefab, spawns[i].transform.position, Quaternion.identity);
 		}
 		else {
-			Debug.Log("Warning: 3 spawns not set up");
+			Debug.Log("Warning: Number of spawn does not equal " + TOTAL_SPAWNS);
 		}
 	}
+	void DrawNewSpawns() {
+		if (spawns.Length == TOTAL_SPAWNS) {
+			previousSpawnIndex = nextSpawnIndex;
+			nextSpawnIndex = Random.Range(0, 8);
+
+		}
+		else {
+			Debug.Log("Warning: Number of spawn does not equal " + TOTAL_SPAWNS);
+		}
+	}
+
 
 }
