@@ -3,18 +3,21 @@ using System.Collections;
 
 public class GameLogic : MonoBehaviour {
 
+	public static float backgroundSpeed;
+	public static float objectSpeed;
+
 	// Setup:
 	public Bike bikeInstance;
 	public Helmet helmetInstance;
 	public Background backgroundInstance;
 
-	public float startSpeed;
-	public float maxSpeed;
+	public float backgroundStartSpeed;
+	public float backgroundMaxSpeed;
 	public float speedIncrease;
 	public float speedIncreaseIntervalInSeconds;
 	public int startHealth;
 	public float invincibilityLength;
-	public float enemyStartSpeed;
+	public float objectStartSpeed;
 
 	// Flags:
 
@@ -55,11 +58,11 @@ public class GameLogic : MonoBehaviour {
 		if (gameState == GameState.Game) {
 			// Interval counting:
 			intervalCounter = Time.time - intervalStartTime;
-			if ((intervalCounter > speedIncreaseIntervalInSeconds) && (backgroundInstance.scrollSpeed < maxSpeed)) {
-				backgroundInstance.scrollSpeed += speedIncrease;
+			if ((intervalCounter > speedIncreaseIntervalInSeconds) && (backgroundSpeed < backgroundMaxSpeed)) {
+				backgroundSpeed += speedIncrease;
 				intervalStartTime = Time.time;
-				Debug.Log("New background scroll speed: " + backgroundInstance.scrollSpeed);
-				Enemy.speed += speedIncrease;
+				Debug.Log("New background scroll speed: " + backgroundSpeed);
+				objectSpeed += speedIncrease;
 			}
 
 			// Update UI:
@@ -80,6 +83,8 @@ public class GameLogic : MonoBehaviour {
 	}
 
 	void BeginTitle() {
+		backgroundSpeed = 0.0f;
+		objectSpeed = 0.0f;
 		this.gameState = GameState.Title;
 	}
 
@@ -88,13 +93,14 @@ public class GameLogic : MonoBehaviour {
 		intervalStartTime = startTime;
 		bikeInstance.ResetBike();
 		helmetInstance.health = startHealth;
-		backgroundInstance.scrollSpeed = startSpeed;
-		Enemy.speed = enemyStartSpeed;
+		backgroundSpeed = backgroundStartSpeed;
+		objectSpeed = objectStartSpeed;
 		this.gameState = GameState.Game;
 	}
 
 	void BeginGameOver() {
-		backgroundInstance.scrollSpeed = 0.0f;
+		backgroundSpeed = 0.0f;
+		objectSpeed = 0.0f;
 		this.gameState = GameState.GameOver;
 	}
 

@@ -214,13 +214,13 @@ MonoBehaviour:
   bikeInstance: {fileID: 579267031}
   helmetInstance: {fileID: 1198710024}
   backgroundInstance: {fileID: 782578471}
-  startSpeed: 1.5
-  maxSpeed: 20
+  backgroundStartSpeed: 1.5
+  backgroundMaxSpeed: 20
   speedIncrease: .0500000007
   speedIncreaseIntervalInSeconds: 5
   startHealth: 3
   invincibilityLength: 0
-  enemyStartSpeed: .899999976
+  objectStartSpeed: 1
 --- !u!4 &618945514
 Transform:
   m_ObjectHideFlags: 0
@@ -302,7 +302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b821a1c8569ce24881ab98933be463a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 1
   interval: 4.5
   limit: -10
   totalDistance: 0

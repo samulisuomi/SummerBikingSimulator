@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class Background : MonoBehaviour {
-
-	public float scrollSpeed;
+	
 	public float interval;
 	public float limit;
 
@@ -22,7 +21,7 @@ public class Background : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		distance = scrollSpeed * Time.deltaTime;
+		distance = GameLogic.backgroundSpeed * Time.deltaTime;
 		totalDistance = totalDistance + distance;
 
 		foreach (GameObject bg in backgroundSprites) 
