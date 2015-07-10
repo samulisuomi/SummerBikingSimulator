@@ -11,6 +11,9 @@ public class GameLogic : MonoBehaviour {
 	public Helmet helmetInstance;
 	public Background backgroundInstance;
 
+	public Enemy enemyPrefab;
+	public Bottle bottlePrefab;
+
 	public float backgroundStartSpeed;
 	public float backgroundMaxSpeed;
 	public float speedIncrease;
@@ -18,15 +21,21 @@ public class GameLogic : MonoBehaviour {
 	public int startHealth;
 	public float invincibilityLength;
 	public float objectStartSpeed;
+	public float objectIntervalDistance;
+
+	public GameObject[] spawns;
 
 	// Flags:
 
 	// Private variables:
-	private float startTime;
-	private float intervalStartTime;
-	private float intervalCounter;
+	private float gameStartTime;
+	private float backgroundIntervalStartTime;
+	private float backgroundIntervalCounter;
 
-	private int distanceScale = 2;
+	private float objectIntervalStartDistance;
+	private float objectIntervalDistanceCounter;
+
+	private float distanceScale = 1.81818181f;
 
 	// States of the game:
 	private enum GameState {
@@ -56,13 +65,25 @@ public class GameLogic : MonoBehaviour {
 		}
 
 		if (gameState == GameState.Game) {
-			// Interval counting:
-			intervalCounter = Time.time - intervalStartTime;
-			if ((intervalCounter > speedIncreaseIntervalInSeconds) && (backgroundSpeed < backgroundMaxSpeed)) {
+			// Background speed increments:
+			backgroundIntervalCounter = Time.time - backgroundIntervalStartTime;
+			if ((backgroundIntervalCounter > speedIncreaseIntervalInSeconds) && (backgroundSpeed < backgroundMaxSpeed)) {
 				backgroundSpeed += speedIncrease;
-				intervalStartTime = Time.time;
+				backgroundIntervalStartTime = Time.time;
 				Debug.Log("New background scroll speed: " + backgroundSpeed);
 				objectSpeed += speedIncrease;
+			}
+
+			// Object spawn intervals:
+			objectIntervalDistanceCounter = backgroundInstance.totalDistance - objectIntervalStartDistance;
+			if (objectIntervalDistanceCounter > objectIntervalDistance) {
+				SpawnEnemy(1); //TODO: switch to spawn control method
+
+				if (Random.Range(0.0f, 1.0f) > 0.69f) {
+					SpawnBottle(0);
+				}
+
+				objectIntervalStartDistance = backgroundInstance.totalDistance;
 			}
 
 			// Update UI:
@@ -85,16 +106,18 @@ public class GameLogic : MonoBehaviour {
 	void BeginTitle() {
 		backgroundSpeed = 0.0f;
 		objectSpeed = 0.0f;
+		backgroundInstance.ResetTotalDistance();
 		this.gameState = GameState.Title;
 	}
 
 	void BeginGame() {
-		startTime = Time.time;
-		intervalStartTime = startTime;
+		gameStartTime = Time.time;
+		backgroundIntervalStartTime = gameStartTime;
 		bikeInstance.ResetBike();
 		helmetInstance.health = startHealth;
 		backgroundSpeed = backgroundStartSpeed;
 		objectSpeed = objectStartSpeed;
+		objectIntervalStartDistance = backgroundInstance.totalDistance;
 		this.gameState = GameState.Game;
 	}
 
@@ -102,6 +125,24 @@ public class GameLogic : MonoBehaviour {
 		backgroundSpeed = 0.0f;
 		objectSpeed = 0.0f;
 		this.gameState = GameState.GameOver;
+	}
+
+	// TODO: spawn management and actual spawning should be in different methods
+	void SpawnEnemy(int i) {
+		if (spawns.Length == 3) {
+			Instantiate(enemyPrefab, spawns[i].transform.position, Quaternion.identity);
+		}
+		else {
+			Debug.Log("Warning: 3 spawns not set up");
+		}
+	}
+	void SpawnBottle(int i) {
+		if (spawns.Length == 3) {
+			Instantiate(bottlePrefab, spawns[i].transform.position, Quaternion.identity);
+		}
+		else {
+			Debug.Log("Warning: 3 spawns not set up");
+		}
 	}
 
 }
