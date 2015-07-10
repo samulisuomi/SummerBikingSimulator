@@ -40,19 +40,30 @@ public class GameLogic : MonoBehaviour {
 	private static float DISTANCE_SCALE = 1.81818181f;
 	private static int TOTAL_SPAWNS = 3;
 
+	private SpawnObject[] nextSpawns;
 	private int nextSpawnIndex;
 	private int previousSpawnIndex;
 
-	private static string[] spawnOptions = {"000", "001", "010", "011", "100", "101", "110"};
-	private static int[][] nextSpawnOptions = new int[][] {
-		new int[] {0, 1, 2, 3, 4, 5, 6},
-		new int[] {0, 1, 2, 3, 4, 5},
-		new int[] {0, 1, 2, 3, 4, 6},
-		new int[] {0, 1, 2, 3},
-		new int[] {0, 1, 2, 4, 5, 6},
-		new int[] {0, 1, 4, 5},
-		new int[] {0, 2, 4, 6}
+	private static string[][] spawnCombinations = new string[][] {
+		new string[] {"110", "100"},
+		new string[] {"100", "110"},
+		new string[] {"011", "001"},
+		new string[] {"001", "011"},
+		new string[] {"001", "001"},
+		new string[] {"100", "100"},
+		new string[] {"100", "100", "110"},
+		new string[] {"001", "001", "011"},
+		new string[] {"011", "010", "010"},
+		new string[] {"110", "010", "010"},
+		new string[] {"110", "100", "100"},
+		new string[] {"011", "001", "001"},
+		new string[] {"001"},
+		new string[] {"100"},
+		new string[] {"010"},
+		new string[] {"000"}
 	};
+	private int currentSpawnCombination;
+	private int spawnIndexCounter;
 
 	// States of the game:
 	private enum GameState {
@@ -66,18 +77,12 @@ public class GameLogic : MonoBehaviour {
 	private enum SpawnObject {
 		Enemy,
 		Bottle,
-		Sunglasses
+		Sunglasses,
+		Empty
 	}
 	
 	// Use this for initialization
 	void Start () {
-		foreach (var item in nextSpawnOptions) {
-			string s = "";
-			foreach (int i in item) {
-				s = s + i;
-			}
-			Debug.Log (s);
-		}
 		helmetInstance.maxHealth = startHealth;
 		BeginGame();
 	}
@@ -108,11 +113,8 @@ public class GameLogic : MonoBehaviour {
 			// Object spawn intervals:
 			objectIntervalDistanceCounter = backgroundInstance.totalDistance - objectIntervalStartDistance;
 			if (objectIntervalDistanceCounter > objectIntervalDistance) {
-				SpawnEnemy(1); //TODO: switch to spawn control method
-
-				if (Random.Range(0.0f, 1.0f) > 0.69f) {
-					SpawnBottle(0);
-				}
+				PopulateNextSpawns();
+				ExecuteSpawns();
 
 				objectIntervalStartDistance = backgroundInstance.totalDistance;
 			}
@@ -149,6 +151,7 @@ public class GameLogic : MonoBehaviour {
 		backgroundSpeed = backgroundStartSpeed;
 		objectSpeed = objectStartSpeed;
 		objectIntervalStartDistance = backgroundInstance.totalDistance;
+		DrawNewSpawnCombination();
 		this.gameState = GameState.Game;
 	}
 
@@ -158,7 +161,75 @@ public class GameLogic : MonoBehaviour {
 		this.gameState = GameState.GameOver;
 	}
 
-	// TODO: spawn management and actual spawning should be in different methods
+	void ClearNextSpawns() {
+		nextSpawns =  new SpawnObject[3] {SpawnObject.Empty, SpawnObject.Empty, SpawnObject.Empty};
+	}
+
+	void DrawNewSpawnCombination() {
+		currentSpawnCombination = Random.Range(0, spawnCombinations.Length);
+		spawnIndexCounter = 0;
+	}
+
+	void PopulateNextSpawns() {
+		ClearNextSpawns();
+		if (spawnIndexCounter < spawnCombinations[currentSpawnCombination].Length) {
+			for (int i = 0; i < 3; i++) {
+				if (spawnCombinations[currentSpawnCombination][spawnIndexCounter][i] == '1') {
+					nextSpawns[i] = SpawnObject.Enemy;
+				}
+				else {
+					if (DrawBottle()) {
+						nextSpawns[i] = SpawnObject.Bottle;
+					} else if (DrawSunglasses()) {
+						nextSpawns[i] = SpawnObject.Sunglasses;
+					}
+				}
+			}
+			spawnIndexCounter++;
+		} else {
+			DrawNewSpawnCombination(); // there will be one line of no enemies
+			if (DrawBottle()) {
+				nextSpawns[Random.Range(0,3)] = SpawnObject.Bottle;
+			} else if (DrawSunglasses()) {
+				nextSpawns[Random.Range(0,3)] = SpawnObject.Sunglasses;
+			}
+
+		}
+	}
+
+	bool DrawBottle() {
+		int bottleDraw = Random.Range(0,8);
+		if (bottleDraw == 3) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	bool DrawSunglasses() {
+		int sunglassesDraw = Random.Range(0,11);
+		if (sunglassesDraw == 5) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	void ExecuteSpawns() {
+		for (int i = 0; i < 3; i++) {
+			if (nextSpawns[i] == SpawnObject.Enemy) {
+				SpawnEnemy(i);
+			}
+			else if (nextSpawns[i] == SpawnObject.Bottle) {
+				SpawnBottle(i);
+			}
+			else if (nextSpawns[i] == SpawnObject.Sunglasses) {
+				//SpawnSunglasses(i);
+			}
+		}
+	}
+
 	void SpawnEnemy(int i) {
 		if (spawns.Length == TOTAL_SPAWNS) {
 			Instantiate(enemyPrefab, spawns[i].transform.position, Quaternion.identity);
@@ -170,16 +241,6 @@ public class GameLogic : MonoBehaviour {
 	void SpawnBottle(int i) {
 		if (spawns.Length == TOTAL_SPAWNS) {
 			Instantiate(bottlePrefab, spawns[i].transform.position, Quaternion.identity);
-		}
-		else {
-			Debug.Log("Warning: Number of spawn does not equal " + TOTAL_SPAWNS);
-		}
-	}
-	void DrawNewSpawns() {
-		if (spawns.Length == TOTAL_SPAWNS) {
-			previousSpawnIndex = nextSpawnIndex;
-			nextSpawnIndex = Random.Range(0, 8);
-
 		}
 		else {
 			Debug.Log("Warning: Number of spawn does not equal " + TOTAL_SPAWNS);
