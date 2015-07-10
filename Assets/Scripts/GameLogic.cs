@@ -41,8 +41,6 @@ public class GameLogic : MonoBehaviour {
 	private static int TOTAL_SPAWNS = 3;
 
 	private SpawnObject[] nextSpawns;
-	private int nextSpawnIndex;
-	private int previousSpawnIndex;
 
 	private static string[][] spawnCombinations = new string[][] {
 		new string[] {"110", "100"},
@@ -227,6 +225,7 @@ public class GameLogic : MonoBehaviour {
 			else if (nextSpawns[i] == SpawnObject.Sunglasses) {
 				//SpawnSunglasses(i);
 			}
+			Debug.Log("Spawn executed. currentSpawnCombination == " + currentSpawnCombination + ", spawnIndexCounter == " + spawnIndexCounter);
 		}
 	}
 

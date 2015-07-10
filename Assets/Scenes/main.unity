@@ -223,7 +223,7 @@ MonoBehaviour:
   startHealth: 3
   invincibilityLength: 0
   objectStartSpeed: 1.60000002
-  objectIntervalDistance: 3
+  objectIntervalDistance: 2
   spawns:
   - {fileID: 605384154}
   - {fileID: 1688957215}
