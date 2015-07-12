@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a82e9da28d50374e82f1d1f2f2e5a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 7
   xLimit: 1.85000002
   startPositionX: 0
 --- !u!1 &605384154
@@ -216,13 +216,13 @@ MonoBehaviour:
   backgroundInstance: {fileID: 782578471}
   enemyPrefab: {fileID: 11451038, guid: 31cfbb93b7b78964fb159ac677225ca6, type: 2}
   bottlePrefab: {fileID: 11455350, guid: d6bb4401102b37b41976bcdfdf2aa48a, type: 2}
-  backgroundStartSpeed: 1.29999995
+  backgroundStartSpeed: 2
   backgroundMaxSpeed: 20
-  speedIncrease: .0500000007
-  speedIncreaseIntervalInSeconds: 5
+  speedIncrease: .100000001
+  speedIncreaseIntervalInSeconds: 4
   startHealth: 3
   invincibilityLength: 0
-  objectStartSpeed: 1.60000002
+  objectStartSpeed: 3
   objectIntervalDistance: 2
   spawns:
   - {fileID: 605384154}

@@ -49,15 +49,18 @@ public class GameLogic : MonoBehaviour {
 		new string[] {"001", "011"},
 		new string[] {"001", "001"},
 		new string[] {"100", "100"},
-		new string[] {"100", "100", "110"},
-		new string[] {"001", "001", "011"},
+		new string[] {"100", "110"},
+		new string[] {"001", "011"},
 		new string[] {"011", "010", "010"},
 		new string[] {"110", "010", "010"},
 		new string[] {"110", "100", "100"},
 		new string[] {"011", "001", "001"},
-		new string[] {"001"},
-		new string[] {"100"},
-		new string[] {"010"},
+		new string[] {"011", "001", "001", "001", "010"},
+		new string[] {"110", "100", "100", "100", "010"},
+		new string[] {"001", "010"},
+		new string[] {"100", "010"},
+		new string[] {"110", "000", "011", "010"},
+		new string[] {"011", "000", "110", "010"},
 		new string[] {"000"} // this needs to be the last one on the list
 	};
 	private int currentSpawnCombination;
@@ -201,7 +204,7 @@ public class GameLogic : MonoBehaviour {
 	}
 
 	bool DrawBottle() {
-		int bottleDraw = Random.Range(0,8);
+		int bottleDraw = Random.Range(0,11);
 		if (bottleDraw == 3) {
 			return true;
 		}
@@ -211,7 +214,7 @@ public class GameLogic : MonoBehaviour {
 	}
 
 	bool DrawSunglasses() {
-		int sunglassesDraw = Random.Range(0,11);
+		int sunglassesDraw = Random.Range(0,17);
 		if (sunglassesDraw == 5) {
 			return true;
 		}
