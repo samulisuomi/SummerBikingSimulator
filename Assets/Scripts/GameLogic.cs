@@ -58,7 +58,7 @@ public class GameLogic : MonoBehaviour {
 		new string[] {"001"},
 		new string[] {"100"},
 		new string[] {"010"},
-		new string[] {"000"}
+		new string[] {"000"} // this needs to be the last one on the list
 	};
 	private int currentSpawnCombination;
 	private int spawnIndexCounter;
@@ -164,7 +164,12 @@ public class GameLogic : MonoBehaviour {
 	}
 
 	void DrawNewSpawnCombination() {
-		currentSpawnCombination = Random.Range(0, spawnCombinations.Length);
+		if (currentSpawnCombination == spawnCombinations.Length - 1) { // "000"
+			currentSpawnCombination = Random.Range(0, spawnCombinations.Length - 1);
+		}
+		else {
+			currentSpawnCombination = Random.Range(0, spawnCombinations.Length);
+		}
 		spawnIndexCounter = 0;
 	}
 
