@@ -15,6 +15,7 @@ public class GameLogic : MonoBehaviour {
 
 	public Enemy enemyPrefab;
 	public Bottle bottlePrefab;
+	public Sunglasses sunglassesPrefab;
 
 	public float backgroundStartSpeed;
 	public float backgroundMaxSpeed;
@@ -59,6 +60,10 @@ public class GameLogic : MonoBehaviour {
 		new string[] {"110", "100", "100", "100", "010"},
 		new string[] {"001", "010"},
 		new string[] {"100", "010"},
+		new string[] {"100", "010"},
+		new string[] {"101", "100", "110", "010", "010", "000", "011", "010", "010"},
+		new string[] {"101", "100", "110", "100", "101", "001", "011", "011", "001", "001", "100"},
+		new string[] {"101", "001", "011", "001", "101", "100", "110", "110", "100", "100", "001"},
 		new string[] {"110", "000", "011", "010"},
 		new string[] {"011", "000", "110", "010"},
 		new string[] {"000"} // this needs to be the last one on the list
@@ -169,9 +174,11 @@ public class GameLogic : MonoBehaviour {
 	void DrawNewSpawnCombination() {
 		if (currentSpawnCombination == spawnCombinations.Length - 1) { // "000"
 			currentSpawnCombination = Random.Range(0, spawnCombinations.Length - 1);
+			Debug.Log("estettiin tyhjä");
 		}
 		else {
 			currentSpawnCombination = Random.Range(0, spawnCombinations.Length);
+			Debug.Log("normaalispawn");
 		}
 		spawnIndexCounter = 0;
 	}
@@ -204,7 +211,7 @@ public class GameLogic : MonoBehaviour {
 	}
 
 	bool DrawBottle() {
-		int bottleDraw = Random.Range(0,11);
+		int bottleDraw = Random.Range(0,13);
 		if (bottleDraw == 3) {
 			return true;
 		}
@@ -231,7 +238,7 @@ public class GameLogic : MonoBehaviour {
 				SpawnBottle(i);
 			}
 			else if (nextSpawns[i] == SpawnObject.Sunglasses) {
-				//SpawnSunglasses(i);
+				SpawnSunglasses(i);
 			}
 			Debug.Log("Spawn executed. currentSpawnCombination == " + currentSpawnCombination + ", spawnIndexCounter == " + spawnIndexCounter);
 		}
@@ -253,6 +260,14 @@ public class GameLogic : MonoBehaviour {
 			Debug.Log("Warning: Number of spawn does not equal " + TOTAL_SPAWNS);
 		}
 	}
-
+	void SpawnSunglasses(int i) {
+		if (spawns.Length == TOTAL_SPAWNS) {
+			Instantiate(sunglassesPrefab, spawns[i].transform.position, Quaternion.identity);
+		}
+		else {
+			Debug.Log("Warning: Number of spawn does not equal " + TOTAL_SPAWNS);
+		}
+	}
+	
 
 }
