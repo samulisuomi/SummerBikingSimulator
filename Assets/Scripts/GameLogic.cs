@@ -70,6 +70,13 @@ public class GameLogic : MonoBehaviour {
 	};
 	private int currentSpawnCombination;
 	private int spawnIndexCounter;
+	private int rowCounter;
+	private int nextBottleSpawn;
+	private int nextBottleDraw;
+	private static int BOTTLE_ROW_INTERVAL = 20;
+	private int nextSunglassesSpawn;
+	private int nextSunglassesDraw;
+	private static int SUNGLASSES_ROW_INTERVAL = 40;
 
 	// States of the game:
 	private enum GameState {
@@ -158,6 +165,9 @@ public class GameLogic : MonoBehaviour {
 		objectSpeed = objectStartSpeed;
 		objectIntervalStartDistance = backgroundInstance.totalDistance;
 		DrawNewSpawnCombination();
+		rowCounter = 0;
+		DrawNextBottleInterval();
+		DrawNextSunglassesInterval();
 		this.gameState = GameState.Game;
 	}
 
@@ -178,22 +188,33 @@ public class GameLogic : MonoBehaviour {
 		}
 		else {
 			currentSpawnCombination = Random.Range(0, spawnCombinations.Length);
-			Debug.Log("normaalispawn");
 		}
 		spawnIndexCounter = 0;
 	}
 
 	void PopulateNextSpawns() {
+		int nonEnemySlots = 0;
+		int randomNonEnemySpawn = 0;
+		rowCounter++;
+		if (nextBottleDraw == rowCounter) {
+			DrawNextBottleInterval();
+		}
+		if (nextSunglassesDraw == rowCounter) {
+			DrawNextSunglassesInterval();
+		}
 		ClearNextSpawns();
 		if (spawnIndexCounter < spawnCombinations[currentSpawnCombination].Length) {
+			nonEnemySlots = spawnCombinations[currentSpawnCombination][spawnIndexCounter].Split('0').Length - 1;
+			randomNonEnemySpawn = Random.Range(0, nonEnemySlots);
 			for (int i = 0; i < 3; i++) {
 				if (spawnCombinations[currentSpawnCombination][spawnIndexCounter][i] == '1') {
 					nextSpawns[i] = SpawnObject.Enemy;
+					randomNonEnemySpawn++;
 				}
 				else {
-					if (DrawBottle()) {
+					if (IsBottleOnThisRow() && (i == randomNonEnemySpawn)) {
 						nextSpawns[i] = SpawnObject.Bottle;
-					} else if (DrawSunglasses()) {
+					} else if (IsSunglassesOnThisRow() && (i == randomNonEnemySpawn)) {
 						nextSpawns[i] = SpawnObject.Sunglasses;
 					}
 				}
@@ -201,18 +222,17 @@ public class GameLogic : MonoBehaviour {
 			spawnIndexCounter++;
 		} else {
 			DrawNewSpawnCombination(); // there will be one line of no enemies
-			if (DrawBottle()) {
+			if (IsBottleOnThisRow()) {
 				nextSpawns[Random.Range(0,3)] = SpawnObject.Bottle;
-			} else if (DrawSunglasses()) {
+			} else if (IsSunglassesOnThisRow()) {
 				nextSpawns[Random.Range(0,3)] = SpawnObject.Sunglasses;
 			}
 
 		}
 	}
 
-	bool DrawBottle() {
-		int bottleDraw = Random.Range(0,13);
-		if (bottleDraw == 3) {
+	bool IsBottleOnThisRow() {
+		if (nextBottleSpawn == rowCounter) {
 			return true;
 		}
 		else {
@@ -220,15 +240,28 @@ public class GameLogic : MonoBehaviour {
 		}
 	}
 
-	bool DrawSunglasses() {
-		int sunglassesDraw = Random.Range(0,17);
-		if (sunglassesDraw == 5) {
+	bool IsSunglassesOnThisRow() {
+		if (nextSunglassesSpawn == rowCounter) {
 			return true;
 		}
 		else {
 			return false;
 		}
 	}
+	void DrawNextBottleInterval() {
+		int spawnRow = Random.Range(0, BOTTLE_ROW_INTERVAL);
+		nextBottleSpawn = rowCounter + spawnRow;
+		nextBottleDraw = rowCounter + BOTTLE_ROW_INTERVAL;
+		Debug.Log("New bottle drawn at rowCounter == " + rowCounter + " | spawnRow == " + spawnRow + " , nextBottleSpawn == " + nextBottleSpawn + " , nextBottleDraw == " + nextBottleDraw);
+	}
+
+	void DrawNextSunglassesInterval() {
+		int spawnRow = Random.Range(0, SUNGLASSES_ROW_INTERVAL);
+		nextSunglassesSpawn = rowCounter + spawnRow;
+		nextSunglassesDraw = rowCounter + SUNGLASSES_ROW_INTERVAL;
+		Debug.Log("New sunglasses drawn at rowCounter == " + rowCounter + " | spawnRow == " + spawnRow + " , nextSunglassesSpawn == " + nextSunglassesSpawn + " , nextSunglassesDraw == " + nextSunglassesDraw);
+	}
+
 	void ExecuteSpawns() {
 		for (int i = 0; i < 3; i++) {
 			if (nextSpawns[i] == SpawnObject.Enemy) {
@@ -240,7 +273,7 @@ public class GameLogic : MonoBehaviour {
 			else if (nextSpawns[i] == SpawnObject.Sunglasses) {
 				SpawnSunglasses(i);
 			}
-			Debug.Log("Spawn executed. currentSpawnCombination == " + currentSpawnCombination + ", spawnIndexCounter == " + spawnIndexCounter);
+			//Debug.Log("Spawn executed. currentSpawnCombination == " + currentSpawnCombination + ", spawnIndexCounter == " + spawnIndexCounter);
 		}
 	}
 
