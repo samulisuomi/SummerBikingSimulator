@@ -113,7 +113,7 @@ public class GameLogic : MonoBehaviour {
 		if (gameState == GameState.Title) {
 			bikeInstance.ResetBike();
 
-			if ((Input.touchCount > 0) || Input.GetKey("space")) {
+			if (Input.GetMouseButtonDown(0) || Input.GetKey("space")) {
 				BeginGame();
 			}
 		}
@@ -149,7 +149,7 @@ public class GameLogic : MonoBehaviour {
 		}
 
 		if (gameState == GameState.GameOver) {
-			if ((Input.touchCount > 0) || Input.GetKey("space")) {
+			if (Input.GetMouseButtonDown(0) || Input.GetKey("space")) {
 				BeginTitle();
 			}
 		}
