@@ -30,13 +30,16 @@ public class Helmet : MonoBehaviour {
 			FireDestroyEnemyAnimation();
 		}
 		else if (other.tag == "Bottle") {
+			Debug.Log("Bottle hit");
 			if (health < maxHealth) {
 				health++;
+				Destroy(other.gameObject);
 			}
 		}
 		else if (other.tag == "Sunglasses") {
 			Debug.Log("Sunglasses hit");
 			StartInvincibility();
+			Destroy(other.gameObject);
 		}
 	}
 
