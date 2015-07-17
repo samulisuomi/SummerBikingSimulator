@@ -28,6 +28,7 @@ public class GameLogic : MonoBehaviour {
 	public float objectIntervalDistance;
 
 	public GameObject[] spawns;
+	public GUIController guiControllerInstance;
 
 	// Flags:
 
@@ -80,10 +81,11 @@ public class GameLogic : MonoBehaviour {
 	private static int SUNGLASSES_ROW_INTERVAL = 40;
 
 	// States of the game:
-	private enum GameState {
-		Title,					// Beginning state: high score is shown
-		Game,					//
-		GameOver				//
+	public enum GameState {
+		Title,
+		Game,
+		GameOver,
+		GameOverNewRecord
 	}
 	private GameState gameState;
 
@@ -98,7 +100,7 @@ public class GameLogic : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		helmetInstance.maxHealth = startHealth;
-		BeginGame();
+		BeginTitle();
 	}
 	
 	// Update is called once per frame
@@ -111,7 +113,9 @@ public class GameLogic : MonoBehaviour {
 		if (gameState == GameState.Title) {
 			bikeInstance.ResetBike();
 
-			// Wait for tap.
+			if ((Input.touchCount > 0) || Input.GetKey("space")) {
+				BeginGame();
+			}
 		}
 
 		if (gameState == GameState.Game) {
@@ -145,7 +149,9 @@ public class GameLogic : MonoBehaviour {
 		}
 
 		if (gameState == GameState.GameOver) {
-			// Wait for tap.
+			if ((Input.touchCount > 0) || Input.GetKey("space")) {
+				BeginTitle();
+			}
 		}
 
 	}
@@ -174,6 +180,7 @@ public class GameLogic : MonoBehaviour {
 		}
 
 		this.gameState = GameState.Title;
+		guiControllerInstance.SwitchToTitle();
 	}
 
 	void BeginGame() {
@@ -190,6 +197,7 @@ public class GameLogic : MonoBehaviour {
 		DrawNextBottleInterval();
 		DrawNextSunglassesInterval();
 		this.gameState = GameState.Game;
+		guiControllerInstance.SwitchToGame();
 	}
 
 	void BeginGameOver() {
@@ -197,6 +205,8 @@ public class GameLogic : MonoBehaviour {
 		backgroundSpeed = 0.0f;
 		objectSpeed = 0.0f;
 		this.gameState = GameState.GameOver;
+		// new record?
+		guiControllerInstance.SwitchToGameOver(false);
 	}
 
 	void ClearNextSpawns() {
