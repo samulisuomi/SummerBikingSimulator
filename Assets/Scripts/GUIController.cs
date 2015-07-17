@@ -8,6 +8,9 @@ public class GUIController : MonoBehaviour {
 	public GameObject GameGUICanvas;
 	public GameObject GameOverGUICanvas;
 	public Text newRecordText;
+	public Text healthText;
+	public Text scoreText;
+	public Text distanceText;
 
 	private CanvasGroup titleCG;
 	private CanvasGroup gameCG;

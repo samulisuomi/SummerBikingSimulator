@@ -118,6 +118,9 @@ MonoBehaviour:
   GameGUICanvas: {fileID: 84117805}
   GameOverGUICanvas: {fileID: 210641535}
   newRecordText: {fileID: 838416848}
+  healthText: {fileID: 497996487}
+  scoreText: {fileID: 1282600168}
+  distanceText: {fileID: 2106806562}
   transitionSpeed: 3
 --- !u!4 &83637302
 Transform:
@@ -149,7 +152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &84117806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1030,9 +1033,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efea35ecb81853145b15197bd41fef53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  full: {r: .260380626, g: .823529422, b: .404080719, a: 0}
-  half: {r: .860294104, g: .559191167, b: .107536763, a: 0}
-  oneLeft: {r: .823529422, g: .193771616, b: .193771616, a: 0}
+  full: {r: .260380626, g: .823529422, b: .404080719, a: 1}
+  half: {r: .860294104, g: .559191167, b: .107536763, a: 1}
+  oneLeft: {r: .823529422, g: .193771616, b: .193771616, a: 1}
 --- !u!1 &579267028
 GameObject:
   m_ObjectHideFlags: 0

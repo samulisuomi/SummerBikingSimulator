@@ -139,7 +139,7 @@ public class GameLogic : MonoBehaviour {
 
 			// Update UI:
 			// hudsomething.distance = (backgroundInstance.totalDistance * distanceScale).ToString("0.00"); 
-			// hudsomething.health = helmetInstance.health;
+			guiControllerInstance.healthText.text = helmetInstance.health + "";
 
 			// Detect lives:
 			if (helmetInstance.health <= 0) {
