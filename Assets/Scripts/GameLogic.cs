@@ -155,6 +155,24 @@ public class GameLogic : MonoBehaviour {
 		backgroundSpeed = 0.0f;
 		objectSpeed = 0.0f;
 		backgroundInstance.ResetTotalDistance();
+
+		// Destroy everything left from last game:
+		var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+		var bottles = GameObject.FindGameObjectsWithTag("Bottle");
+		var sunglasses = GameObject.FindGameObjectsWithTag("Sunglasses");
+		
+		foreach(var item in enemies) {
+			Destroy(item);
+		}
+
+		foreach(var item in bottles) {
+			Destroy(item);
+		}
+
+		foreach(var item in sunglasses) {
+			Destroy(item);
+		}
+
 		this.gameState = GameState.Title;
 	}
 
