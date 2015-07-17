@@ -17,6 +17,7 @@ public class GameLogic : MonoBehaviour {
 	public Bottle bottlePrefab;
 	public Sunglasses sunglassesPrefab;
 
+	public float bikeStartSpeed;	
 	public float backgroundStartSpeed;
 	public float backgroundMaxSpeed;
 	public float speedIncrease;
@@ -150,6 +151,7 @@ public class GameLogic : MonoBehaviour {
 	}
 
 	void BeginTitle() {
+		bikeInstance.speed = 0.0f;
 		backgroundSpeed = 0.0f;
 		objectSpeed = 0.0f;
 		backgroundInstance.ResetTotalDistance();
@@ -157,6 +159,7 @@ public class GameLogic : MonoBehaviour {
 	}
 
 	void BeginGame() {
+		bikeInstance.speed = bikeStartSpeed;
 		gameStartTime = Time.time;
 		backgroundIntervalStartTime = gameStartTime;
 		bikeInstance.ResetBike();
@@ -172,6 +175,7 @@ public class GameLogic : MonoBehaviour {
 	}
 
 	void BeginGameOver() {
+		bikeInstance.speed = 0.0f;
 		backgroundSpeed = 0.0f;
 		objectSpeed = 0.0f;
 		this.gameState = GameState.GameOver;

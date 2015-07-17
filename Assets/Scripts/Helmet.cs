@@ -12,23 +12,40 @@ public class Helmet : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (invincibility) {
-			// Do invincibility effect
+		// TODO: Invincibility effect and countdown
+	}
 
-			// TODO: Collision with enemy:
-			if (false) {
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.tag == "Enemy") {
+			if (invincibility) {
+				Debug.Log("Enemy hit when invincible");
 				score += scoreDestroyEnemy;
+				Destroy(other.gameObject);
+			} else {
+				Debug.Log("Enemy hit when not invincible");
+				health--;
+				Destroy(other.gameObject);
 			}
+			FireDestroyEnemyAnimation();
 		}
-		// TODO:Collision with sunglasses:
-		if (false) {
-			invincibility = true;
-		}
-		// TODO: Collision with bottle:
-		if (false) {
+		else if (other.tag == "Bottle") {
 			if (health < maxHealth) {
 				health++;
 			}
+		}
+		else if (other.tag == "Sunglasses") {
+			Debug.Log("Sunglasses hit");
+			StartInvincibility();
+		}
+	}
+
+	void StartInvincibility() {
+	}
+
+	void FireDestroyEnemyAnimation() {
+		if (invincibility) {
+		} else {
 		}
 	}
 }

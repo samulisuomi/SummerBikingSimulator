@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a82e9da28d50374e82f1d1f2f2e5a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 0
   xLimit: 1.85000002
   startPositionX: 0
 --- !u!1 &605384154
@@ -217,6 +217,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 11451038, guid: 31cfbb93b7b78964fb159ac677225ca6, type: 2}
   bottlePrefab: {fileID: 11455350, guid: d6bb4401102b37b41976bcdfdf2aa48a, type: 2}
   sunglassesPrefab: {fileID: 11429484, guid: 58af4b8e66de97a4780821770914af1e, type: 2}
+  bikeStartSpeed: 7
   backgroundStartSpeed: 2
   backgroundMaxSpeed: 20
   speedIncrease: .100000001
@@ -410,6 +411,8 @@ GameObject:
   - 4: {fileID: 1198710022}
   - 212: {fileID: 1198710023}
   - 114: {fileID: 1198710024}
+  - 50: {fileID: 1198710026}
+  - 60: {fileID: 1198710025}
   m_Layer: 0
   m_Name: Helmet
   m_TagString: Untagged
@@ -471,6 +474,47 @@ MonoBehaviour:
   maxHealth: 0
   invincibility: 0
   scoreDestroyEnemy: 0
+--- !u!60 &1198710025
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1198710021}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: .551200867, y: .0671986043}
+      - {x: .419198394, y: .427204937}
+      - {x: .218055472, y: .722300887}
+      - {x: .126699731, y: .821265101}
+      - {x: .0125981066, y: .913200259}
+      - {x: -.109803557, y: .804198623}
+      - {x: -.321200877, y: .52280128}
+      - {x: -.441400588, y: .309400886}
+      - {x: -.494600743, y: .0946038663}
+      - {x: -.395006269, y: .0263942182}
+      - {x: -.20179978, y: -.0118280947}
+      - {x: .0125983357, y: -.0120340884}
+      - {x: .411799699, y: -.00762334466}
+--- !u!50 &1198710026
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1198710021}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!1 &1672274163
 GameObject:
   m_ObjectHideFlags: 0

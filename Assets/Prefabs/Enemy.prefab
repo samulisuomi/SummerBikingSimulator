@@ -11,9 +11,10 @@ GameObject:
   - 212: {fileID: 21221570}
   - 95: {fileID: 9569304}
   - 114: {fileID: 11451038}
+  - 58: {fileID: 5839898}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,6 +31,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!58 &5839898
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146160}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: .100000001, y: -.300000012}
+  serializedVersion: 2
+  m_Radius: 1.20000005
 --- !u!95 &9569304
 Animator:
   serializedVersion: 3
@@ -58,7 +72,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716eb69461165f34b8e92e38c9b304ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
 --- !u!212 &21221570
 SpriteRenderer:
   m_ObjectHideFlags: 1
