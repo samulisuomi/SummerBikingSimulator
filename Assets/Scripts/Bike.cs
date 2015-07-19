@@ -12,29 +12,31 @@ public class Bike : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (transform.position.x > -xLimit) {
-			// Keyboard:
-			if (Input.GetKey("a")) {
-				MoveLeft(speed * Time.deltaTime);
-			}
-			// Touch:
-			if (Input.touchCount > 0) {
-				Touch lastTouch = Input.touches[Input.touches.Length - 1];
-				if (lastTouch.position.x < Screen.width / 2) {
+		if (GameLogic.gameState == GameLogic.GameState.Game) {
+			if (transform.position.x > -xLimit) {
+				// Keyboard:
+				if (Input.GetKey("a")) {
 					MoveLeft(speed * Time.deltaTime);
 				}
+				// Touch:
+				if (Input.touchCount > 0) {
+					Touch lastTouch = Input.touches[Input.touches.Length - 1];
+					if (lastTouch.position.x < Screen.width / 2) {
+						MoveLeft(speed * Time.deltaTime);
+					}
+				}
 			}
-		}
-		if (transform.position.x < xLimit) {
-			// Keyboard:
-			if (Input.GetKey("d")) {
-				MoveRight(speed * Time.deltaTime);
-			}
-			// Touch:
-			if (Input.touchCount > 0) {
-				Touch lastTouch = Input.touches[Input.touches.Length - 1];
-				if (lastTouch.position.x > Screen.width / 2) {
+			if (transform.position.x < xLimit) {
+				// Keyboard:
+				if (Input.GetKey("d")) {
 					MoveRight(speed * Time.deltaTime);
+				}
+				// Touch:
+				if (Input.touchCount > 0) {
+					Touch lastTouch = Input.touches[Input.touches.Length - 1];
+					if (lastTouch.position.x > Screen.width / 2) {
+						MoveRight(speed * Time.deltaTime);
+					}
 				}
 			}
 		}

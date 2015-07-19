@@ -87,7 +87,7 @@ public class GameLogic : MonoBehaviour {
 		GameOver,
 		GameOverNewRecord
 	}
-	private GameState gameState;
+	public static GameState gameState;
 
 	// States of the game:
 	private enum SpawnObject {
@@ -187,7 +187,7 @@ public class GameLogic : MonoBehaviour {
 			Destroy(item);
 		}
 
-		this.gameState = GameState.Title;
+		gameState = GameState.Title;
 		guiControllerInstance.SwitchToTitle();
 	}
 
@@ -204,7 +204,7 @@ public class GameLogic : MonoBehaviour {
 		rowCounter = 0;
 		DrawNextBottleInterval();
 		DrawNextSunglassesInterval();
-		this.gameState = GameState.Game;
+		gameState = GameState.Game;
 		guiControllerInstance.SwitchToGame();
 	}
 
@@ -213,7 +213,7 @@ public class GameLogic : MonoBehaviour {
 		bikeInstance.speed = 0.0f;
 		backgroundSpeed = 0.0f;
 		objectSpeed = 0.0f;
-		this.gameState = GameState.GameOver;
+		gameState = GameState.GameOver;
 
 		bool newRecord = false;
 

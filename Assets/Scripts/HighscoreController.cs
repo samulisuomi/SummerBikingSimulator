@@ -4,16 +4,18 @@ using System.Collections;
 public class HighscoreController : MonoBehaviour {
 
 	public static int GetTopScore() {
-		return 0;
+		return PlayerPrefs.GetInt("topScore");
 	}
 
 	public static float GetTopDistance() {
-		return 0.0f;
+		return PlayerPrefs.GetFloat("topDistance");
 	}
 
 	public static void SetTopScore(int score) {
+		PlayerPrefs.SetInt("topScore", score);
 	}
 
 	public static void SetTopDistance(float distance) {
+		PlayerPrefs.SetFloat("topDistance", distance);
 	}
 }
