@@ -96,6 +96,8 @@ public class GameLogic : MonoBehaviour {
 		Sunglasses,
 		Empty
 	}
+
+	private float gameOverUICounter;
 	
 	// Use this for initialization
 	void Start () {
@@ -149,8 +151,12 @@ public class GameLogic : MonoBehaviour {
 		}
 
 		if (gameState == GameState.GameOver) {
-			if (Input.GetMouseButtonDown(0) || Input.GetKey("space")) {
-				BeginTitle();
+			if (gameOverUICounter < 0.7f) {
+				gameOverUICounter += Time.deltaTime;
+			} else {
+				if (Input.GetMouseButtonDown(0) || Input.GetKey("space")) {
+					BeginTitle();
+				}
 			}
 		}
 
@@ -201,6 +207,7 @@ public class GameLogic : MonoBehaviour {
 	}
 
 	void BeginGameOver() {
+		gameOverUICounter = 0.0f;
 		bikeInstance.speed = 0.0f;
 		backgroundSpeed = 0.0f;
 		objectSpeed = 0.0f;
