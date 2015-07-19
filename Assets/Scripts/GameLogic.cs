@@ -40,7 +40,7 @@ public class GameLogic : MonoBehaviour {
 	private float objectIntervalStartDistance;
 	private float objectIntervalDistanceCounter;
 
-	private static float DISTANCE_SCALE = 1.81818181f;
+	private static float DISTANCE_SCALE = 0.3f;
 	private static int TOTAL_SPAWNS = 3;
 
 	private SpawnObject[] nextSpawns;
@@ -140,7 +140,7 @@ public class GameLogic : MonoBehaviour {
 			}
 
 			// Update UI:
-			// hudsomething.distance = (backgroundInstance.totalDistance * distanceScale).ToString("0.00"); 
+			guiControllerInstance.distanceText.text = (backgroundInstance.totalDistance * DISTANCE_SCALE).ToString("0.00"); 
 			guiControllerInstance.healthText.text = helmetInstance.health + "";
 
 			// Detect lives:

@@ -84,4 +84,10 @@ public class GUIController : MonoBehaviour {
 		gameCG.alpha = 0.0f;
 		gameOverCG.alpha = 0.0f;
 	}
+
+	public void UpdateScore(float score) {
+	}
+
+	public void UpdateDistance(float distance) {
+	}
 }
