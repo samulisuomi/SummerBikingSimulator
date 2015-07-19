@@ -167,6 +167,7 @@ public class GameLogic : MonoBehaviour {
 		bikeInstance.speed = 0.0f;
 		backgroundSpeed = 0.0f;
 		objectSpeed = 0.0f;
+		helmetInstance.score = 0;
 		backgroundInstance.ResetTotalDistance();
 
 		// Destroy everything left from last game:
@@ -213,8 +214,18 @@ public class GameLogic : MonoBehaviour {
 		backgroundSpeed = 0.0f;
 		objectSpeed = 0.0f;
 		this.gameState = GameState.GameOver;
-		// new record?
-		guiControllerInstance.SwitchToGameOver(false);
+
+		bool newRecord = false;
+
+		if (HighscoreController.GetTopScore() < helmetInstance.score) {
+			HighscoreController.SetTopScore(helmetInstance.score);
+			newRecord = true;
+		}
+		if (HighscoreController.GetTopDistance() < (backgroundInstance.totalDistance * DISTANCE_SCALE)) {
+			HighscoreController.SetTopDistance(backgroundInstance.totalDistance * DISTANCE_SCALE);
+			newRecord = true;
+		}
+		guiControllerInstance.SwitchToGameOver(newRecord, helmetInstance.score, (backgroundInstance.totalDistance * DISTANCE_SCALE));
 	}
 
 	void ClearNextSpawns() {
