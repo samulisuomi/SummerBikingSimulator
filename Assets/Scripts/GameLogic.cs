@@ -140,6 +140,7 @@ public class GameLogic : MonoBehaviour {
 			}
 
 			// Update UI:
+			guiControllerInstance.scoreText.text = (helmetInstance.score).ToString("N0"); 
 			guiControllerInstance.distanceText.text = (backgroundInstance.totalDistance * DISTANCE_SCALE).ToString("0.00"); 
 			guiControllerInstance.healthText.text = helmetInstance.health + "";
 
