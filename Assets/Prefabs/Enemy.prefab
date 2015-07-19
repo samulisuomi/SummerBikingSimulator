@@ -41,9 +41,9 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: .100000001, y: -.300000012}
+  m_Offset: {x: .100000001, y: -.449999988}
   serializedVersion: 2
-  m_Radius: 1.20000005
+  m_Radius: 1.45000005
 --- !u!95 &9569304
 Animator:
   serializedVersion: 3
