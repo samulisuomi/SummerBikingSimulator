@@ -1263,13 +1263,13 @@ MonoBehaviour:
   bottlePrefab: {fileID: 11455350, guid: d6bb4401102b37b41976bcdfdf2aa48a, type: 2}
   sunglassesPrefab: {fileID: 11429484, guid: 58af4b8e66de97a4780821770914af1e, type: 2}
   bikeStartSpeed: 7
-  backgroundStartSpeed: 2
+  backgroundStartSpeed: 3
   backgroundMaxSpeed: 20
-  speedIncrease: .100000001
+  speedIncrease: .200000003
   speedIncreaseIntervalInSeconds: 4
   startHealth: 3
-  invincibilityLength: 0
-  objectStartSpeed: 3
+  invincibilityLength: 8
+  objectStartSpeed: 4
   objectIntervalDistance: 1.5
   spawns:
   - {fileID: 605384154}
