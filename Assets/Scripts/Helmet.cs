@@ -33,6 +33,7 @@ public class Helmet : MonoBehaviour {
 			} else {
 				Debug.Log("Enemy hit when not invincible");
 				health--;
+				SoundManager.instance.RandomiseSfx(damageSound1, damageSound2);
 				Destroy(other.gameObject);
 			}
 			FireDestroyEnemyAnimation();
@@ -41,12 +42,14 @@ public class Helmet : MonoBehaviour {
 			Debug.Log("Bottle hit");
 			if (health < maxHealth) {
 				health++;
+				SoundManager.instance.RandomiseSfx(waterSound1, waterSound2);
 				Destroy(other.gameObject);
 			}
 		}
 		else if (other.tag == "Sunglasses") {
 			Debug.Log("Sunglasses hit");
 			StartInvincibility();
+			SoundManager.instance.PlaySingle(invincibilityStartSound);
 			Destroy(other.gameObject);
 		}
 	}

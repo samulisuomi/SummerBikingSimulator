@@ -1817,8 +1817,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fxSource: {fileID: 1052746830}
   musicSource: {fileID: 1052746827}
-  lowPitchRange: .949999988
-  highPitchRange: 1.04999995
+  lowPitchRange: .800000012
+  highPitchRange: 1.20000005
 --- !u!4 &1052746829
 Transform:
   m_ObjectHideFlags: 0
@@ -2088,13 +2088,14 @@ MonoBehaviour:
   maxHealth: 0
   invincibility: 0
   scoreDestroyEnemy: 0
-  damageSound1: {fileID: 0}
-  damageSound2: {fileID: 0}
+  damageSound1: {fileID: 8300000, guid: 75998b8d739856e45940839a195c6b8e, type: 3}
+  damageSound2: {fileID: 8300000, guid: ce9af5027878ea644be8ccfc646fabf7, type: 3}
   destroyEnemySound1: {fileID: 0}
   destroyEnemySound2: {fileID: 0}
-  waterSound1: {fileID: 0}
-  waterSound2: {fileID: 0}
-  invincibilityStartSound: {fileID: 0}
+  waterSound1: {fileID: 8300000, guid: d2d5fe387fb25df4996952559d7c7a69, type: 3}
+  waterSound2: {fileID: 8300000, guid: 00e59f46edd495a43b91eb2225587ab5, type: 3}
+  invincibilityStartSound: {fileID: 8300000, guid: 20f247468b941ef48ba41ec3d9ee45c7,
+    type: 3}
 --- !u!60 &1198710025
 PolygonCollider2D:
   m_ObjectHideFlags: 0

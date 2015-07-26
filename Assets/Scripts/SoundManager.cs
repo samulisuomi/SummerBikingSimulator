@@ -7,8 +7,8 @@ public class SoundManager : MonoBehaviour {
 	public AudioSource musicSource;
 	public static SoundManager instance = null;
 
-	public float lowPitchRange = .95f;
-	public float highPitchRange = 1.05f;
+	public float lowPitchRange = 1f;
+	public float highPitchRange = 1f;
 
 	// Use this for initialization
 	void Awake () {
@@ -22,6 +22,7 @@ public class SoundManager : MonoBehaviour {
 	
 	public void PlaySingle(AudioClip clip) {
 		fxSource.clip = clip;
+		fxSource.pitch = 1.0f;
 		fxSource.Play();
 	}
 
