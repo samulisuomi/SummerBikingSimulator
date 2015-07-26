@@ -10,6 +10,14 @@ public class Helmet : MonoBehaviour {
 
 	public int scoreDestroyEnemy;
 
+	public AudioClip damageSound1;
+	public AudioClip damageSound2;
+	public AudioClip destroyEnemySound1;
+	public AudioClip destroyEnemySound2;
+	public AudioClip waterSound1;
+	public AudioClip waterSound2;
+	public AudioClip invincibilityStartSound;
+
 	// Update is called once per frame
 	void Update () {
 		// TODO: Invincibility effect and countdown
