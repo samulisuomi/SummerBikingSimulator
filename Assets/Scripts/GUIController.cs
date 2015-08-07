@@ -8,15 +8,12 @@ public class GUIController : MonoBehaviour {
 	public GameObject GameGUICanvas;
 	public GameObject GameOverGUICanvas;
 
-	public Text topScoreText;
 	public Text topDistanceText;
 
 	public Text healthText;
-	public Text scoreText;
 	public Text distanceText;
 
 	public Text newRecordText;
-	public Text lastScoreText;
 	public Text lastDistanceText;
 
 	private CanvasGroup titleCG;
@@ -51,7 +48,7 @@ public class GUIController : MonoBehaviour {
 		TitleGUICanvas.SetActive(true);
 		GameGUICanvas.SetActive(false);
 		GameOverGUICanvas.SetActive(false);
-		topScoreText.text = HighscoreController.GetTopScore().ToString("N0");
+		//topScoreText.text = HighscoreController.GetTopScore().ToString("N0");
 		topDistanceText.text = HighscoreController.GetTopDistance().ToString("0.00");
 	}
 
@@ -63,7 +60,7 @@ public class GUIController : MonoBehaviour {
 		GameOverGUICanvas.SetActive(false);
 	}
 
-	public void SwitchToGameOver(bool newRecord, int lastScore, float lastDistance) {
+	public void SwitchToGameOver(bool newRecord, float lastDistance) {
 		SetAllTransparent();
 		currentState = GameLogic.GameState.GameOver;
 		TitleGUICanvas.SetActive(false);
@@ -77,7 +74,7 @@ public class GUIController : MonoBehaviour {
 			Color oldColor = newRecordText.color;
 			newRecordText.color = new Color(oldColor.r,oldColor.g,oldColor.b, 0.0f);
 		}
-		lastScoreText.text = lastScore.ToString("N0");
+		//lastScoreText.text = lastScore.ToString("N0");
 		lastDistanceText.text = lastDistance.ToString("0.00");
 	}
 
