@@ -18,7 +18,8 @@ public class GUIController : MonoBehaviour {
 	public Text lastDistanceText;
 
 	public Image invincibilityImage;
-	public Text invincibilityText;
+	public Text invincibilityTitle;
+	public Text invincibilityTime;
 
 	private CanvasGroup titleCG;
 	private CanvasGroup gameCG;
