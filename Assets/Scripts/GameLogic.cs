@@ -8,7 +8,7 @@ public class GameLogic : MonoBehaviour {
 	public static float backgroundSpeed;
 	public static float objectSpeed;
 
-	// Setup:
+	// Setup (TODO: this stuff should be in a separate place to keep things DRY):
 	public Bike bikeInstance;
 	public Helmet helmetInstance;
 	public Background backgroundInstance;
@@ -81,6 +81,8 @@ public class GameLogic : MonoBehaviour {
 	private int nextSunglassesSpawn;
 	private int nextSunglassesDraw;
 	private static int SUNGLASSES_ROW_INTERVAL = 40;
+	public float invincibilityCounter;
+	private bool showInvincibilityCalledOnce; //BAD DESIGN!!!!!!!!
 
 	// States of the game:
 	public enum GameState {
@@ -155,6 +157,18 @@ public class GameLogic : MonoBehaviour {
 				BeginGameOver();
 			}
 
+			// Invincibility:
+			if (helmetInstance.invincibility) {
+				// TODO: update seconds
+				if (!showInvincibilityCalledOnce) {
+					guiControllerInstance.ShowInvincibility();
+					showInvincibilityCalledOnce = true;
+				}
+				helmetInstance.invincibilityCounter -= Time.deltaTime;
+				if (helmetInstance.invincibilityCounter < 0.0f) {
+					EndInvcinbility();
+				}
+			}
 		}
 
 		if (gameState == GameState.GameOver) {
@@ -207,6 +221,8 @@ public class GameLogic : MonoBehaviour {
 		objectIntervalStartDistance = backgroundInstance.totalDistance;
 		DrawNewSpawnCombination();
 		rowCounter = 0;
+		helmetInstance.invincibilityLength = invincibilityLength;
+		helmetInstance.invincibilityCounter = 0.0f;
 		DrawNextBottleInterval();
 		DrawNextSunglassesInterval();
 		gameState = GameState.Game;
@@ -352,6 +368,14 @@ public class GameLogic : MonoBehaviour {
 		else {
 			Debug.Log("Warning: Number of spawn does not equal " + TOTAL_SPAWNS);
 		}
+	}
+
+	void EndInvcinbility() {
+		// todo: ui = 0 before the fade
+		// todo: hide UI
+		helmetInstance.invincibility = false;
+		showInvincibilityCalledOnce = false;
+		guiControllerInstance.HideInvincibility();
 	}
 	
 

@@ -4,9 +4,10 @@ using System.Collections;
 
 public class GUIController : MonoBehaviour {
 
-	public GameObject TitleGUICanvas;
-	public GameObject GameGUICanvas;
-	public GameObject GameOverGUICanvas;
+	public GameObject titleGUICanvas;
+	public GameObject gameGUICanvas;
+	public GameObject gameOverGUICanvas;
+	public GameObject invincibilityLayer;
 
 	public Text topDistanceText;
 
@@ -15,6 +16,9 @@ public class GUIController : MonoBehaviour {
 
 	public Text newRecordText;
 	public Text lastDistanceText;
+
+	public Image invincibilityImage;
+	public Text invincibilityText;
 
 	private CanvasGroup titleCG;
 	private CanvasGroup gameCG;
@@ -25,9 +29,9 @@ public class GUIController : MonoBehaviour {
 	private GameLogic.GameState currentState;
 
 	void Start() {
-		titleCG = TitleGUICanvas.GetComponent<CanvasGroup>();
-		gameCG = GameGUICanvas.GetComponent<CanvasGroup>();
-		gameOverCG = GameOverGUICanvas.GetComponent<CanvasGroup>();
+		titleCG = titleGUICanvas.GetComponent<CanvasGroup>();
+		gameCG = gameGUICanvas.GetComponent<CanvasGroup>();
+		gameOverCG = gameOverGUICanvas.GetComponent<CanvasGroup>();
 	}
 
 	void Update() {
@@ -45,9 +49,10 @@ public class GUIController : MonoBehaviour {
 	public void SwitchToTitle() {
 		SetAllTransparent();
 		currentState = GameLogic.GameState.Title;
-		TitleGUICanvas.SetActive(true);
-		GameGUICanvas.SetActive(false);
-		GameOverGUICanvas.SetActive(false);
+		titleGUICanvas.SetActive(true);
+		gameGUICanvas.SetActive(false);
+		gameOverGUICanvas.SetActive(false);
+		invincibilityLayer.SetActive(false);
 		//topScoreText.text = HighscoreController.GetTopScore().ToString("N0");
 		topDistanceText.text = HighscoreController.GetTopDistance().ToString("0.00");
 	}
@@ -55,17 +60,19 @@ public class GUIController : MonoBehaviour {
 	public void SwitchToGame() {
 		SetAllTransparent();
 		currentState = GameLogic.GameState.Game;
-		TitleGUICanvas.SetActive(false);
-		GameGUICanvas.SetActive(true);
-		GameOverGUICanvas.SetActive(false);
+		titleGUICanvas.SetActive(false);
+		gameGUICanvas.SetActive(true);
+		gameOverGUICanvas.SetActive(false);
+		invincibilityLayer.SetActive(false);
 	}
 
 	public void SwitchToGameOver(bool newRecord, float lastDistance) {
 		SetAllTransparent();
 		currentState = GameLogic.GameState.GameOver;
-		TitleGUICanvas.SetActive(false);
-		GameGUICanvas.SetActive(false);
-		GameOverGUICanvas.SetActive(true);
+		titleGUICanvas.SetActive(false);
+		gameGUICanvas.SetActive(false);
+		gameOverGUICanvas.SetActive(true);
+		invincibilityLayer.SetActive(false);
 		if (newRecord) {
 			Color oldColor = newRecordText.color;
 			newRecordText.color = new Color(oldColor.r,oldColor.g,oldColor.b, 1.0f);
@@ -76,6 +83,15 @@ public class GUIController : MonoBehaviour {
 		}
 		//lastScoreText.text = lastScore.ToString("N0");
 		lastDistanceText.text = lastDistance.ToString("0.00");
+	}
+
+	public void ShowInvincibility() {
+		invincibilityLayer.SetActive(true);
+	}
+
+	public void HideInvincibility() {
+		invincibilityLayer.SetActive(false);
+		// TODO: play sound;
 	}
 
 	public void RefreshAlpha(CanvasGroup cg) {

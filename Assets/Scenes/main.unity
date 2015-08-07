@@ -114,14 +114,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd46f16b16e35c46bae3ce3a76c43a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitleGUICanvas: {fileID: 1366924072}
-  GameGUICanvas: {fileID: 84117805}
-  GameOverGUICanvas: {fileID: 210641535}
+  titleGUICanvas: {fileID: 1366924072}
+  gameGUICanvas: {fileID: 84117805}
+  gameOverGUICanvas: {fileID: 210641535}
+  invincibilityLayer: {fileID: 626141655}
   topDistanceText: {fileID: 406694075}
   healthText: {fileID: 497996487}
   distanceText: {fileID: 2106806562}
   newRecordText: {fileID: 838416848}
   lastDistanceText: {fileID: 265720922}
+  invincibilityImage: {fileID: 231379517}
+  invincibilityText: {fileID: 0}
   transitionSpeed: 3
 --- !u!4 &83637302
 Transform:
@@ -1089,7 +1092,7 @@ MonoBehaviour:
   speedIncreaseAfterHighDifficultySpeed: .100000001
   speedIncreaseIntervalInSeconds: 3
   startHealth: 3
-  invincibilityLength: 8
+  invincibilityLength: 5
   objectStartSpeed: 4.5
   objectIntervalDistance: 1.5
   spawns:
@@ -1097,6 +1100,7 @@ MonoBehaviour:
   - {fileID: 1688957215}
   - {fileID: 1750767313}
   guiControllerInstance: {fileID: 83637301}
+  invincibilityCounter: 0
 --- !u!4 &618945514
 Transform:
   m_ObjectHideFlags: 0
@@ -1808,6 +1812,8 @@ MonoBehaviour:
   score: 0
   health: 0
   maxHealth: 0
+  invincibilityLength: 0
+  invincibilityCounter: 0
   invincibility: 0
   scoreDestroyEnemy: 0
   damageSound1: {fileID: 8300000, guid: 75998b8d739856e45940839a195c6b8e, type: 3}

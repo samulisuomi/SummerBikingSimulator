@@ -6,6 +6,8 @@ public class Helmet : MonoBehaviour {
 	public int score;
 	public int health;
 	public int maxHealth;
+	public float invincibilityLength;
+	public float invincibilityCounter;
 	public bool invincibility;
 
 	public int scoreDestroyEnemy;
@@ -17,11 +19,6 @@ public class Helmet : MonoBehaviour {
 	public AudioClip waterSound1;
 	public AudioClip waterSound2;
 	public AudioClip invincibilityStartSound;
-
-	// Update is called once per frame
-	void Update () {
-		// TODO: Invincibility effect and countdown
-	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
@@ -54,7 +51,10 @@ public class Helmet : MonoBehaviour {
 		}
 	}
 
-	void StartInvincibility() {
+	public void StartInvincibility() {
+		// todo: show ui
+		invincibility = true;
+		invincibilityCounter = invincibilityLength;
 	}
 
 	void FireDestroyEnemyAnimation() {
