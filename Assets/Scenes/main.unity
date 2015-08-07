@@ -117,13 +117,10 @@ MonoBehaviour:
   TitleGUICanvas: {fileID: 1366924072}
   GameGUICanvas: {fileID: 84117805}
   GameOverGUICanvas: {fileID: 210641535}
-  topScoreText: {fileID: 0}
   topDistanceText: {fileID: 406694075}
   healthText: {fileID: 497996487}
-  scoreText: {fileID: 0}
   distanceText: {fileID: 2106806562}
   newRecordText: {fileID: 838416848}
-  lastScoreText: {fileID: 0}
   lastDistanceText: {fileID: 265720922}
   transitionSpeed: 3
 --- !u!4 &83637302
@@ -137,7 +134,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!1 &84117805
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +224,7 @@ RectTransform:
   - {fileID: 497996485}
   - {fileID: 626141656}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -279,7 +276,7 @@ RectTransform:
   - {fileID: 265720924}
   - {fileID: 1820705271}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1085,13 +1082,15 @@ MonoBehaviour:
   bottlePrefab: {fileID: 11455350, guid: d6bb4401102b37b41976bcdfdf2aa48a, type: 2}
   sunglassesPrefab: {fileID: 11429484, guid: 58af4b8e66de97a4780821770914af1e, type: 2}
   bikeStartSpeed: 7
-  backgroundStartSpeed: 3
+  backgroundStartSpeed: 3.5
+  backgroundHighDifficultySpeed: 8.5
   backgroundMaxSpeed: 20
-  speedIncrease: .200000003
-  speedIncreaseIntervalInSeconds: 4
+  speedIncrease: .300000012
+  speedIncreaseAfterHighDifficultySpeed: .100000001
+  speedIncreaseIntervalInSeconds: 3
   startHealth: 3
   invincibilityLength: 8
-  objectStartSpeed: 4
+  objectStartSpeed: 4.5
   objectIntervalDistance: 1.5
   spawns:
   - {fileID: 605384154}
@@ -1290,38 +1289,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 838416844}
---- !u!1 &849231718
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 849231719}
-  m_Layer: 0
-  m_Name: GUI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &849231719
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 849231718}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.87109375, y: 2.87109375, z: 2.87109375}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 71.9238129, y: 128}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: .5, y: .5}
 --- !u!1 &921251406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,7 +1552,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
 --- !u!82 &1052746830
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2006,7 +1973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1366924073
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2022,7 +1989,7 @@ RectTransform:
   - {fileID: 1340970563}
   - {fileID: 406694072}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2406,7 +2373,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1 &1820705270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2667,7 +2634,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!1 &2106806559
 GameObject:
   m_ObjectHideFlags: 0

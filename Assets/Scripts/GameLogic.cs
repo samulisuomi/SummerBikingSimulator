@@ -19,8 +19,10 @@ public class GameLogic : MonoBehaviour {
 
 	public float bikeStartSpeed;	
 	public float backgroundStartSpeed;
+	public float backgroundHighDifficultySpeed;
 	public float backgroundMaxSpeed;
 	public float speedIncrease;
+	public float speedIncreaseAfterHighDifficultySpeed;
 	public float speedIncreaseIntervalInSeconds;
 	public int startHealth;
 	public float invincibilityLength;
@@ -124,7 +126,11 @@ public class GameLogic : MonoBehaviour {
 			// Background speed increments:
 			backgroundIntervalCounter = Time.time - backgroundIntervalStartTime;
 			if ((backgroundIntervalCounter > speedIncreaseIntervalInSeconds) && (backgroundSpeed < backgroundMaxSpeed)) {
-				backgroundSpeed += speedIncrease;
+				if (backgroundSpeed < backgroundHighDifficultySpeed) {
+					backgroundSpeed += speedIncrease;
+				} else {
+					backgroundSpeed += speedIncreaseAfterHighDifficultySpeed;
+				}
 				backgroundIntervalStartTime = Time.time;
 				Debug.Log("New background scroll speed: " + backgroundSpeed);
 				objectSpeed += speedIncrease;
