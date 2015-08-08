@@ -19,6 +19,7 @@ public class Helmet : MonoBehaviour {
 	public AudioClip waterSound1;
 	public AudioClip waterSound2;
 	public AudioClip invincibilityStartSound;
+	public AudioClip invincibilityEndSound;
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
@@ -46,13 +47,12 @@ public class Helmet : MonoBehaviour {
 		else if (other.tag == "Sunglasses") {
 			Debug.Log("Sunglasses hit");
 			StartInvincibility();
-			SoundManager.instance.PlaySingle(invincibilityStartSound);
 			Destroy(other.gameObject);
 		}
 	}
 
 	public void StartInvincibility() {
-		// todo: show ui
+		SoundManager.instance.PlaySingle(invincibilityStartSound);
 		invincibility = true;
 		invincibilityCounter = invincibilityLength;
 	}

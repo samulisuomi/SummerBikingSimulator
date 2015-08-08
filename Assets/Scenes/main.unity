@@ -1827,6 +1827,8 @@ MonoBehaviour:
   waterSound2: {fileID: 8300000, guid: 00e59f46edd495a43b91eb2225587ab5, type: 3}
   invincibilityStartSound: {fileID: 8300000, guid: 20f247468b941ef48ba41ec3d9ee45c7,
     type: 3}
+  invincibilityEndSound: {fileID: 8300000, guid: f0bd62e89ec8df540bc7fc464859386a,
+    type: 3}
 --- !u!60 &1198710025
 PolygonCollider2D:
   m_ObjectHideFlags: 0

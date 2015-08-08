@@ -385,6 +385,7 @@ public class GameLogic : MonoBehaviour {
 		helmetInstance.invincibility = false;
 		showInvincibilityCalledOnce = false;
 		guiControllerInstance.HideInvincibility();
+		SoundManager.instance.PlaySingle(helmetInstance.invincibilityEndSound);
 	}
 
 	void OnDestroy() {
