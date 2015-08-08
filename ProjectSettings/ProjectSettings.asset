@@ -123,8 +123,8 @@ PlayerSettings:
   iOSLaunchScreenCustomXibPath: 
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: "D:/Users/Samuli/Dropbox/T\xE4rke\xE4/ks/ks_ss"
+  AndroidKeyaliasName: ks_ss_bike
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   androidEnableBanner: 1

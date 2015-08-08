@@ -84,6 +84,7 @@ public class GameLogic : MonoBehaviour {
 	private static int SUNGLASSES_ROW_INTERVAL = 40;
 	public float invincibilityCounter;
 	private bool showInvincibilityCalledOnce; //BAD DESIGN!!!!!!!!
+	private BannerView bannerView;
 
 	// States of the game:
 	public enum GameState {
@@ -109,7 +110,12 @@ public class GameLogic : MonoBehaviour {
 		helmetInstance.maxHealth = startHealth;
 		BeginTitle();
 	}
-	
+
+	void Awake() {
+		RequestBanner();
+		bannerView.Hide();
+	}
+
 	// Update is called once per frame
 	void Update(){
 		if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -228,6 +234,7 @@ public class GameLogic : MonoBehaviour {
 		DrawNextSunglassesInterval();
 		gameState = GameState.Game;
 		guiControllerInstance.SwitchToGame();
+		bannerView.Hide();
 	}
 
 	void BeginGameOver() {
@@ -244,6 +251,7 @@ public class GameLogic : MonoBehaviour {
 			newRecord = true;
 		}
 		guiControllerInstance.SwitchToGameOver(newRecord, (backgroundInstance.totalDistance * DISTANCE_SCALE));
+		bannerView.Show();
 	}
 
 	void ClearNextSpawns() {
@@ -378,6 +386,29 @@ public class GameLogic : MonoBehaviour {
 		showInvincibilityCalledOnce = false;
 		guiControllerInstance.HideInvincibility();
 	}
-	
 
+	void OnDestroy() {
+		bannerView.Destroy();
+	}
+
+	private void RequestBanner()
+	{
+		#if UNITY_ANDROID
+		string adUnitId = Secrets.AD_UNIT_ID;
+		#elif UNITY_IPHONE
+		string adUnitId = "INSERT_IOS_BANNER_AD_UNIT_ID_HERE";
+		#else
+		string adUnitId = "unexpected_platform";
+		#endif
+		
+		// Create a 320x50 banner at the top of the screen.
+		bannerView = new BannerView(adUnitId, AdSize.Banner, AdPosition.Top);
+		// Create an empty ad request.
+		AdRequest request = new AdRequest.Builder()
+			.AddTestDevice(AdRequest.TestDeviceSimulator)
+			.TagForChildDirectedTreatment(true)
+			.Build();
+		// Load the banner with the request.
+		bannerView.LoadAd(request);
+	}
 }

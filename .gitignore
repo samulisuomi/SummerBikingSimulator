@@ -36,3 +36,7 @@ Thumbs.db.meta
 # Config files #
 # ============ #
 HighScores.cfg
+
+# Secrets
+Secrets.cs
+Secrets.cs.meta
