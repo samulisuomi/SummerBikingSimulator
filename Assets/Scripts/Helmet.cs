@@ -27,6 +27,7 @@ public class Helmet : MonoBehaviour {
 			if (invincibility) {
 				Debug.Log("Enemy hit when invincible");
 				score += scoreDestroyEnemy;
+				SoundManager.instance.PlaySingle(destroyEnemySound1);
 				Destroy(other.gameObject);
 			} else {
 				Debug.Log("Enemy hit when not invincible");

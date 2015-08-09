@@ -81,7 +81,7 @@ public class GameLogic : MonoBehaviour {
 	private static int BOTTLE_ROW_INTERVAL = 20;
 	private int nextSunglassesSpawn;
 	private int nextSunglassesDraw;
-	private static int SUNGLASSES_ROW_INTERVAL = 40;
+	private static int SUNGLASSES_ROW_INTERVAL = 50;
 	public float invincibilityCounter;
 	private bool showInvincibilityCalledOnce; //BAD DESIGN!!!!!!!!
 	private BannerView bannerView;
