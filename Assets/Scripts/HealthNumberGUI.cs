@@ -11,7 +11,7 @@ public class HealthNumberGUI : MonoBehaviour {
 
 	void Start() {
 		textComponent = GetComponentInParent<Text>();
-		textComponent.color = half;
+		textComponent.color = full;
 	}
 
 	void Update() {

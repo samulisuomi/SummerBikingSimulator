@@ -1142,8 +1142,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 231379515}
-  - {fileID: 1553071767}
   - {fileID: 1266307503}
+  - {fileID: 1553071767}
   m_Father: {fileID: 84117809}
   m_RootOrder: 4
   m_AnchorMin: {x: .5, y: 0}
@@ -1901,7 +1901,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 626141656}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -16, y: -14.0000076}
@@ -1933,7 +1933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: .517241478, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 9c2b603fe5b183846889daad11c065a2, type: 3}
     m_FontSize: 12
@@ -2259,15 +2259,15 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1553071766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.70000005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 626141656}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 37.1000061, y: -9.1000061}
-  m_SizeDelta: {x: 100, y: 25}
+  m_AnchoredPosition: {x: 38.2999992, y: -8.39999962}
+  m_SizeDelta: {x: 100, y: 33.2000008}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1553071768
 MonoBehaviour:
@@ -2280,9 +2280,9 @@ MonoBehaviour:
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: .75, y: -.75}
-  m_UseGraphicAlpha: 0
+  m_UseGraphicAlpha: 1
 --- !u!114 &1553071769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2295,12 +2295,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: .911764681, b: .00628798129, a: 1}
+  m_Color: {r: .862745166, g: .733333349, b: 0, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 9c2b603fe5b183846889daad11c065a2, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 1
