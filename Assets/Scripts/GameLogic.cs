@@ -169,7 +169,6 @@ public class GameLogic : MonoBehaviour {
 
 			// Invincibility:
 			if (helmetInstance.invincibility) {
-				// TODO: update seconds
 				if (!showInvincibilityCalledOnce) {
 					guiControllerInstance.ShowInvincibility();
 					showInvincibilityCalledOnce = true;
@@ -178,6 +177,7 @@ public class GameLogic : MonoBehaviour {
 				if (helmetInstance.invincibilityCounter < 0.0f) {
 					EndInvcinbility();
 				}
+				guiControllerInstance.invincibilityTime.text = ((int) helmetInstance.invincibilityCounter + 1.0f) + "";
 			}
 		}
 
