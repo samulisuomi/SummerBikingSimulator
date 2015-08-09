@@ -75,7 +75,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.samulisuomi.sbs
+  bundleIdentifier: com.samulisuomi.summerbikingsimulator
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
@@ -127,7 +127,7 @@ PlayerSettings:
   AndroidKeyaliasName: ks_ss_bike
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
-  androidEnableBanner: 1
+  androidEnableBanner: 0
   m_AndroidBanners:
   - width: 320
     height: 180
