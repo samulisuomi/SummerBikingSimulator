@@ -33,6 +33,9 @@ public class GameLogic : MonoBehaviour {
 	public GameObject[] spawns;
 	public GUIController guiControllerInstance;
 
+	public AudioClip gameStartSound;
+	public AudioClip newRecordSound;
+
 	// Flags:
 
 	// Private variables:
@@ -235,6 +238,7 @@ public class GameLogic : MonoBehaviour {
 		gameState = GameState.Game;
 		guiControllerInstance.SwitchToGame();
 		bannerView.Hide();
+		SoundManager.instance.PlaySingle(gameStartSound);
 	}
 
 	void BeginGameOver() {
@@ -249,6 +253,7 @@ public class GameLogic : MonoBehaviour {
 		if (HighscoreController.GetTopDistance() < (backgroundInstance.totalDistance * DISTANCE_SCALE)) {
 			HighscoreController.SetTopDistance(backgroundInstance.totalDistance * DISTANCE_SCALE);
 			newRecord = true;
+			SoundManager.instance.PlaySingle(newRecordSound);
 		}
 		guiControllerInstance.SwitchToGameOver(newRecord, (backgroundInstance.totalDistance * DISTANCE_SCALE));
 		bannerView.Show();

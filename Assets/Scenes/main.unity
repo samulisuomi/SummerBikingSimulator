@@ -1101,6 +1101,8 @@ MonoBehaviour:
   - {fileID: 1688957215}
   - {fileID: 1750767313}
   guiControllerInstance: {fileID: 83637301}
+  gameStartSound: {fileID: 8300000, guid: f779980de8d17ba47a8754ae048e2ecc, type: 3}
+  newRecordSound: {fileID: 8300000, guid: 8c9d8638fc6091b41b72924bb2fdabd2, type: 3}
   invincibilityCounter: 0
 --- !u!4 &618945514
 Transform:
@@ -1821,8 +1823,8 @@ MonoBehaviour:
   scoreDestroyEnemy: 0
   damageSound1: {fileID: 8300000, guid: 75998b8d739856e45940839a195c6b8e, type: 3}
   damageSound2: {fileID: 8300000, guid: ce9af5027878ea644be8ccfc646fabf7, type: 3}
-  destroyEnemySound1: {fileID: 0}
-  destroyEnemySound2: {fileID: 0}
+  destroyEnemySound1: {fileID: 8300000, guid: 4fbda2b2f9045b943a57f7ddc4c681aa, type: 3}
+  destroyEnemySound2: {fileID: 8300000, guid: 4fbda2b2f9045b943a57f7ddc4c681aa, type: 3}
   waterSound1: {fileID: 8300000, guid: d2d5fe387fb25df4996952559d7c7a69, type: 3}
   waterSound2: {fileID: 8300000, guid: 00e59f46edd495a43b91eb2225587ab5, type: 3}
   invincibilityStartSound: {fileID: 8300000, guid: 20f247468b941ef48ba41ec3d9ee45c7,
